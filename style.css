@@ -133,6 +133,7 @@ section.especialidades .flex {
 }
 
 .especialidades .especialidades-box {
+    flex: 1;
     color: aliceblue;
     padding: 40px;
     border: 2px solid white;
