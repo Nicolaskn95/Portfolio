@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Portfolio Nicolas</title>
+
+    <script src="menu.js" defer></script>
+
 </head>
 <body>
     
@@ -37,6 +40,25 @@
                     <button >Contato</button>
                 </a>
             </div>
+
+            <div class="btn-abrir-menu" id="btn-menu">
+                <i class="bi bi-list"></i>
+            </div>
+
+            <div class="menu-mobile" id="menu-mobile">
+                <div class="btn-fechar">
+                    <i class="bi bi-x-lg"></i>
+                </div>
+                <nav>
+                    <ul>                    
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#portfolio">Projetos</a></li>            
+                        <li><a href="#formulario">Contato</a></li>            
+                    </ul>
+                </nav>
+            </div>
+            <div class="overlay-menu" id="overlay-menu"></div>
         </div><!--interface-->
     </header>
 
