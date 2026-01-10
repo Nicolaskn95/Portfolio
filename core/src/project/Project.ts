@@ -3,7 +3,7 @@ import { Level } from './Level'
 import { Type } from './Type'
 
 export interface Project {
-	id: string
+	id: number
 	name: string
 	description: string
 	type: Type
@@ -11,5 +11,5 @@ export interface Project {
 	level: Level
 	repository: string
 	highlight: boolean
-	technologies: Technology[]
+	technologies?: Technology[]
 }
