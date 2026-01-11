@@ -1,0 +1,7 @@
+POST https://nicolaskn95.app.n8n.cloud/webhook-test/personal-assistant
+Content-Type: application/json
+
+{
+  "chatId": "12345",
+  "message": "Sou da empresa FazSite e preciso de um desenvolvedor full stack java"
+}
