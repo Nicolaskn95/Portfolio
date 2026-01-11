@@ -1,0 +1,13 @@
+{
+	"name": "Portfolio",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:Nicolaskn95/Portfolio.git",
+	"author": "Nicolaskn95 <nicolasjap@hotmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"start:backend": "cd backend && npm run start:dev",
+		"start:frontend": "cd frontend && npm run dev",
+		"start": "npx concurrently \"yarn start:backend\" \"npm run start:frontend\" "
+	}
+}
