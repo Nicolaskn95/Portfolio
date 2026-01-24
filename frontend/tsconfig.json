@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "ES2017",
+		"baseUrl": ".",
+		"target": "es2023",
+		"sourceMap": true,
 		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowSyntheticDefaultImports": true,
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -20,6 +23,7 @@
 		],
 		"paths": {
 			"@/*": ["./*"],
+			"@core": ["../core/src/index.ts"],
 			"@core/*": ["../core/src/*"]
 		}
 	},
