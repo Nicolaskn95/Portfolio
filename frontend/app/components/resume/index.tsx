@@ -1,5 +1,7 @@
 import { Technology } from '@core/technology/Technology'
 import TechnologiesWorked from './TechnologiesWorked'
+import Knowledge from './Knowledge'
+import MiniCV from './MiniCV'
 
 interface ResumeProps {
 	technologies: Technology[]
@@ -7,8 +9,11 @@ interface ResumeProps {
 
 export default function Resume(props: ResumeProps) {
 	return (
-		<div>
-			<TechnologiesWorked technologies={props.technologies} />
+		<div className="flex gap-4">
+			<div className="flex-1"></div>
+			<MiniCV />
+			<Knowledge />
+			<TechnologiesWorked list={props.technologies} />
 		</div>
 	)
 }
