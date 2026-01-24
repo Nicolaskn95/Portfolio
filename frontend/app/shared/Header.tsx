@@ -6,7 +6,7 @@ import { Menu } from './Menu'
 export function Header() {
 	return (
 		<header className=" flex items-center h-16 bg-black/50">
-			<Container className="flex-1 flex justify-between items-center">
+			<Container className="flex-1 flex justify-center sm:justify-between items-center">
 				<div className="flex flex-row items-center gap-10">
 					<Link href="/" className="hidden sm:block">
 						<Image src="/logo.svg" alt="Logo" width={80} height={0} />

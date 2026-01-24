@@ -1,8 +1,9 @@
-import { Technology } from '@core/technology/Technology'
+import { Technology } from '@core'
 import { httpGet } from './api'
 
 export async function getTechnologies() {
-	const technologies: Technology[] = await httpGet('/technologies')
+	const response = await httpGet<Technology[]>('/technologies')
+	const technologies = Array.isArray(response) ? response : []
 
 	return {
 		all: technologies,

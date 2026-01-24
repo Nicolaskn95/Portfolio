@@ -1,13 +1,14 @@
 const baseURL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000'
 
-export async function httpGet(url: string) {
-	console.log(process.env.NEXT_PUBLIC_API_URL)
+export async function httpGet<T>(url: string): Promise<T | null> {
 	try {
 		const response = await fetch(normalizeUrl(`${baseURL}/${url}`))
 		return response.json()
 	} catch (error) {
-		console.error('Error in httpGet:', error)
-		throw error
+		if (process.env.NODE_ENV !== 'production') {
+			console.error('Error in httpGet:', error)
+		}
+		return null
 	}
 }
 
