@@ -1,6 +1,6 @@
 import { Level } from './Level'
-import { Technology } from '../technology/Technology'
 import { Type } from './Type'
+import { Project } from './Project'
 
 export { Level, Type }
-export type { Technology }
+export type { Project }
