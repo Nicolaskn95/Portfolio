@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common'
-import { Technology } from '@core/technology/Technology'
+import { Technology } from '@prisma/client'
 import { TechnologyPrisma } from './technology.prisma'
 
 @Controller('technologies')
