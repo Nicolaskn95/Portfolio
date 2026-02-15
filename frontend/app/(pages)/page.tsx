@@ -1,9 +1,9 @@
+import { Container } from '../shared/Container'
+import { getProjects } from '../functions/projects'
+import { getTechnologies } from '../functions/technologies'
 import { Main } from '../components/landing/Main'
 import Projects from '../components/projects/Projects'
 import Resume from '../components/resume'
-import { getProjects } from '../functions/projects'
-import { getTechnologies } from '../functions/technologies'
-import { Container } from '../shared/Container'
 
 export default async function Home() {
 	const technologies = await getTechnologies()
