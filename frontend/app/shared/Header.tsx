@@ -9,7 +9,13 @@ export function Header() {
 			<Container className="flex-1 flex justify-center sm:justify-between items-center">
 				<div className="flex flex-row items-center gap-10">
 					<Link href="/" className="hidden sm:block">
-						<Image src="/logo.svg" alt="Logo" width={80} height={0} />
+						<Image
+							src="/logo_nicolas3.png"
+							alt="Logo"
+							width={200}
+							height={200}
+							className="invert"
+						/>
 					</Link>
 					<Menu />
 				</div>

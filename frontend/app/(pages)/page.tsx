@@ -16,7 +16,7 @@ export default async function Home() {
 				<Projects title="Destaques" list={projects.highlight} />
 				<Projects title="Web" list={projects.web} />
 				<Projects title="Mobile" list={projects.mobile} />
-				<Projects title="Jogos" list={projects.game} />
+				{/* <Projects title="Jogos" list={projects.game} /> */}
 				<Resume technologies={technologies.all ?? []} />
 			</Container>
 		</div>

@@ -16,8 +16,14 @@ export function ImagesCarousel({ images }: ImagesCarouselProps) {
 		<Carousel opts={{ loop: true }} className="xl:w-full md:w-11/12 w-7/10">
 			<CarouselContent>
 				{images.map((src, index) => (
-					<CarouselItem key={index} className="relative h-96 w-full">
-						<Image src={src} alt={`Image ${index + 1}`} fill className="object-cover" />
+					<CarouselItem key={index} className="relative aspect-video w-full min-h-[280px]">
+						<Image
+							src={src}
+							alt={`Image ${index + 1}`}
+							fill
+							className="object-contain"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+						/>
 					</CarouselItem>
 				))}
 			</CarouselContent>

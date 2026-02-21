@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Montserrat } from 'next/font/google'
+import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,6 +13,12 @@ const font = Montserrat({
 	weight: ['400', '700'],
 })
 
+const fontProfessional = Plus_Jakarta_Sans({
+	subsets: ['latin'],
+	variable: '--font-professional',
+	weight: ['400', '500', '600', '700'],
+})
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -20,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={`${font.className} antialiased`}>{children}</body>
+			<body className={`${font.className} ${fontProfessional.variable} antialiased`}>{children}</body>
 		</html>
 	)
 }
