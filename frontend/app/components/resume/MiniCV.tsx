@@ -22,8 +22,8 @@ export default function MiniCV() {
 					</span>
 				</div>
 				<p className="text-sm text-muted-foreground leading-relaxed">
-					Cristão, marido, pai e desenvolvedor de software. Todas as coisas que for fazer
-					é por amor ao senhor Jesus Cristo.
+					Cristão, marido e pai. Como desenvolvedor, busco a excelência em meu trabalho
+					como forma de honrar e servir ao Senhor Jesus Cristo.
 				</p>
 			</div>
 		</div>
