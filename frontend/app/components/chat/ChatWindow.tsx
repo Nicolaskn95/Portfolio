@@ -24,7 +24,7 @@ export function ChatWindow() {
 	return (
 		<div className="flex max-h-[85dvh] min-h-0 flex-col overflow-hidden rounded-xl bg-zinc-300 text-black sm:max-h-[75dvh] sm:rounded-2xl">
 			<div className="flex shrink-0 items-center justify-between bg-white p-3 sm:p-4">
-				<h2 className="truncate text-base font-bold sm:text-xl">Ola Visitante!</h2>
+				<h2 className="truncate text-base font-bold sm:text-xl">Olá, visitante!</h2>
 				<button
 					type="button"
 					onClick={clearMessages}
@@ -72,9 +72,7 @@ export function ChatWindow() {
 				<input
 					type="text"
 					value={text}
-					placeholder={
-						!canSendMore ? 'Aguarde...' : 'Mensagem...'
-					}
+					placeholder={!canSendMore ? 'Aguarde...' : 'Mensagem...'}
 					className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500 pl-2 sm:pl-3 sm:text-base"
 					onChange={(e) => setText(e.target.value)}
 					onKeyDown={(e) => {

@@ -5,7 +5,7 @@ export default function MiniCV() {
 		<div className="flex flex-col sm:flex-row gap-5 p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
 			<div className="relative w-full sm:w-40 h-52 sm:h-52 shrink-0 rounded-xl overflow-hidden bg-muted">
 				<Image
-					src="/rosto.png"
+					src="/rosto.jpg"
 					alt="Nicolas Nagano"
 					fill
 					className="object-cover"
