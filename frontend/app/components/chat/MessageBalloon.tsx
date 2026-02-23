@@ -18,7 +18,7 @@ const bubbleBase =
 function LeftBalloon({ message, omitAuthor }: MessageBalloonProps) {
 	return (
 		<div className="flex flex-col gap-2 items-start">
-			{!omitAuthor && <Image src="/assistant.svg" alt="Assistant" width={40} height={40} />}
+			{!omitAuthor && <Image src="/bot.png" alt="Assistant" width={70} height={70} />}
 			<div className={`flex flex-col ${omitAuthor && 'pl-16'}`}>
 				{!omitAuthor && (
 					<span className="text-[11px] text-zinc-500 font-medium ml-3 mb-0.5">

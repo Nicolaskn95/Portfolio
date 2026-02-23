@@ -3,8 +3,8 @@ import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
 export const metadata: Metadata = {
-	title: 'Profolio Nagano',
-	description: 'Portfolio website of Nagano',
+	title: 'Portfolio Nicolas Nagano',
+	description: 'Portfolio website of Nicolas Nagano',
 }
 
 const font = Montserrat({
@@ -26,7 +26,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={`${font.className} ${fontProfessional.variable} antialiased`}>{children}</body>
+			<body className={`${font.className} ${fontProfessional.variable} antialiased`}>
+				{children}
+			</body>
 		</html>
 	)
 }

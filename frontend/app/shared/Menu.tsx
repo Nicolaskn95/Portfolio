@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 interface MenuProps {
 	href: string
@@ -14,7 +15,7 @@ export function Menu() {
 	const path = usePathname()
 
 	return (
-		<nav className="flex gap-6">
+		<nav className="flex items-center gap-1 sm:gap-8">
 			<MenuItem href="/" selected={path === '/'}>
 				Home
 			</MenuItem>
@@ -34,13 +35,23 @@ export function Menu() {
 
 function MenuItem(props: MenuProps) {
 	return (
-		<Link href={props.href} target={props.newTab ? '_blank' : '_self'}>
-			<span
-				className={`flex items-center gap-2 text-sm border-red-600 hover:text-white ${
-					props.selected ? 'border-b-4 text-white' : 'text-zinc-300'
-				}`}
-			>
+		<Link
+			href={props.href}
+			target={props.newTab ? '_blank' : '_self'}
+			rel={props.newTab ? 'noopener noreferrer' : undefined}
+			className={cn(
+				'relative text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-white',
+				props.selected && 'text-white'
+			)}
+		>
+			<span className="relative">
 				{props.children}
+				{props.selected && (
+					<span
+						className="absolute -bottom-1 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/80 to-transparent"
+						aria-hidden
+					/>
+				)}
 			</span>
 		</Link>
 	)
