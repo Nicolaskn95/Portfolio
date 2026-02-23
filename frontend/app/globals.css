@@ -193,3 +193,26 @@
 	opacity: 0;
 	animation: chat-explode-particle 0.6s ease-out forwards;
 }
+
+/* Animação espacial do Header */
+@keyframes header-star-twinkle {
+	0%,
+	100% {
+		opacity: 0.25;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.9;
+		transform: scale(1.2);
+	}
+}
+
+@keyframes header-space-shimmer {
+	0%,
+	100% {
+		opacity: 0.4;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}

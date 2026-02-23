@@ -2,14 +2,14 @@ import Image from 'next/image'
 
 export default function MiniCV() {
 	return (
-		<div className="flex flex-col sm:flex-row gap-5 p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
-			<div className="relative w-full sm:w-40 h-52 sm:h-52 shrink-0 rounded-xl overflow-hidden bg-muted">
+		<div className="flex flex-col sm:flex-row gap-5 p-4 sm:p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
+			<div className="relative mx-auto w-full max-w-[200px] shrink-0 overflow-hidden rounded-xl bg-muted aspect-3/4 sm:mx-0 sm:h-48 sm:max-w-none sm:w-36 sm:aspect-auto md:h-52 md:w-40">
 				<Image
 					src="/rosto.jpg"
 					alt="Nicolas Nagano"
 					fill
-					className="object-cover"
-					sizes="(max-width: 640px) 100vw, 10rem"
+					className="object-cover object-top"
+					sizes="(max-width: 640px) 200px, (max-width: 768px) 9rem, 10rem"
 				/>
 			</div>
 			<div className="flex flex-col justify-center gap-3 min-w-0">
