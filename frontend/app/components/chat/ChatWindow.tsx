@@ -23,16 +23,18 @@ export function ChatWindow() {
 
 	return (
 		<div className="flex max-h-[85dvh] min-h-0 flex-col overflow-hidden rounded-xl bg-zinc-300 text-black sm:max-h-[75dvh] sm:rounded-2xl">
-			<div className="flex shrink-0 items-center justify-between bg-white p-3 sm:p-4">
-				<h2 className="truncate text-base font-bold sm:text-xl">Olá, visitante!</h2>
-				<button
+			<div className="flex shrink-0 items-center justify-between gap-2 bg-white p-3 sm:p-4">
+				<h2 className="min-w-0 flex-1 truncate text-base font-bold sm:text-xl">Olá, visitante!</h2>
+				<Button
 					type="button"
+					variant="ghost"
+					size="icon"
 					onClick={clearMessages}
-					className="flex shrink-0 touch-manipulation p-1 -m-1"
+					className="ml-auto h-9 w-9 shrink-0 rounded-full text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 sm:h-10 sm:w-10 [&>svg]:shrink-0"
 					aria-label="Limpar conversa"
 				>
-					<IconReload size={22} className="text-black sm:size-6" />
-				</button>
+					<IconReload size={20} className="sm:size-5" />
+				</Button>
 			</div>
 			{messages.length === 0 ? (
 				<div className="flex min-h-[200px] flex-1 flex-col items-center justify-center gap-2 px-4 py-6 sm:min-h-[280px] sm:py-8">

@@ -23,15 +23,17 @@ export function ChatButton() {
 	if (open) {
 		return (
 			<div className="fixed bottom-12 right-4 left-4 z-50 w-auto max-w-[400px] sm:bottom-14 sm:right-5 sm:left-auto sm:max-w-[500px]">
-				<button
-					type="button"
-					onClick={() => setOpen(false)}
-					className="absolute -top-1 -right-1 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-zinc-700 text-white shadow-md transition-colors hover:bg-zinc-600 sm:-top-2 sm:-right-2 sm:h-8 sm:w-8"
-					aria-label="Fechar chat"
-				>
-					<IconX size={18} />
-				</button>
-				<ChatWindow />
+				<div className="relative">
+					<button
+						type="button"
+						onClick={() => setOpen(false)}
+						className="absolute -top-2 -right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-zinc-700 text-white shadow-md transition-colors hover:bg-zinc-600 sm:h-8 sm:w-8"
+						aria-label="Fechar chat"
+					>
+						<IconX size={18} />
+					</button>
+					<ChatWindow />
+				</div>
 			</div>
 		)
 	}
