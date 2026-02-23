@@ -15,7 +15,7 @@ export function Menu() {
 	const path = usePathname()
 
 	return (
-		<nav className="flex items-center gap-1 sm:gap-8">
+		<nav className="flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-6 md:gap-8">
 			<MenuItem href="/" selected={path === '/'}>
 				Home
 			</MenuItem>
@@ -40,7 +40,7 @@ function MenuItem(props: MenuProps) {
 			target={props.newTab ? '_blank' : '_self'}
 			rel={props.newTab ? 'noopener noreferrer' : undefined}
 			className={cn(
-				'relative text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-white',
+				'relative whitespace-nowrap text-xs font-medium text-zinc-400 transition-colors duration-200 hover:text-white sm:text-sm',
 				props.selected && 'text-white'
 			)}
 		>

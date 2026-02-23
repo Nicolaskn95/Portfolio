@@ -22,11 +22,11 @@ export function ChatButton() {
 
 	if (open) {
 		return (
-			<div className="fixed bottom-5 right-5 z-50 w-[400px] sm:w-[500px]">
+			<div className="fixed bottom-12 right-4 left-4 z-50 w-auto max-w-[400px] sm:bottom-14 sm:right-5 sm:left-auto sm:max-w-[500px]">
 				<button
 					type="button"
 					onClick={() => setOpen(false)}
-					className="absolute -top-2 -right-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 text-white shadow-md hover:bg-zinc-600 transition-colors"
+					className="absolute -top-1 -right-1 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-zinc-700 text-white shadow-md transition-colors hover:bg-zinc-600 sm:-top-2 sm:-right-2 sm:h-8 sm:w-8"
 					aria-label="Fechar chat"
 				>
 					<IconX size={18} />
@@ -64,7 +64,7 @@ export function ChatButton() {
 			type="button"
 			onClick={() => setOpen(true)}
 			aria-label="Abrir chat"
-			className="fixed bottom-5 right-5 z-50 flex cursor-pointer items-end justify-end gap-0 border-0 bg-transparent p-0"
+			className="group fixed bottom-12 right-4 z-50 flex cursor-pointer items-end justify-end gap-0 border-0 bg-transparent p-0 sm:bottom-14 sm:right-5"
 			style={{
 				opacity: showOnScroll ? 1 : 0,
 				pointerEvents: showOnScroll ? 'auto' : 'none',
@@ -74,8 +74,7 @@ export function ChatButton() {
 			{/* Explosão de partículas (centro do robô) */}
 			{showOnScroll && (
 				<div
-					className="chat-explosion z-0"
-					style={{ right: '72.5px', bottom: '72.5px' }}
+					className="chat-explosion z-0 right-8 bottom-8 sm:right-[72.5px] sm:bottom-[72.5px]"
 					aria-hidden
 				>
 					{particles.map((p, i) => (
@@ -94,7 +93,7 @@ export function ChatButton() {
 				</div>
 			)}
 			<div
-				className="relative z-10 flex items-end gap-0 origin-bottom-right"
+				className="relative z-10 flex items-end justify-end origin-bottom-right"
 				style={
 					showOnScroll
 						? {
@@ -104,14 +103,30 @@ export function ChatButton() {
 						: undefined
 				}
 			>
-				<div className="relative mb-4 mr-0 px-3 py-2 rounded-2xl rounded-br-sm bg-white text-zinc-800 text-sm font-medium max-w-[140px] shadow-[0_2px_10px_rgba(0,0,0,0.15)]">
+				{/* Mobile: balão em cima do gif. Desktop: balão à esquerda, só no hover */}
+				<div
+					className="pointer-events-none absolute left-1/2 bottom-full mb-2 -translate-x-1/2 rounded-2xl rounded-br-sm bg-white px-2.5 py-1.5 text-xs font-medium text-zinc-800 shadow-[0_2px_10px_rgba(0,0,0,0.15)] max-w-[120px] sm:left-auto sm:right-full sm:bottom-0 sm:mb-14 sm:mr-1 sm:translate-x-0 sm:rounded-br-sm sm:px-3 sm:py-2 sm:text-sm sm:max-w-[140px] sm:opacity-0 sm:transition-opacity sm:duration-200 sm:group-hover:opacity-100"
+					aria-hidden
+				>
 					<span>Posso ajudar?</span>
+					{/* Seta para baixo no mobile */}
 					<div
-						className="absolute -right-2 bottom-4 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-8 border-l-white"
+						className="absolute left-1/2 -bottom-2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-8 border-t-white sm:hidden"
+						aria-hidden
+					/>
+					{/* Seta para a direita no desktop */}
+					<div
+						className="absolute -right-2 bottom-3 hidden w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-8 border-l-white sm:block sm:bottom-4 sm:border-t-[6px] sm:border-b-[6px] sm:border-l-8"
 						aria-hidden
 					/>
 				</div>
-				<Image src="/chat.gif" alt="Assistente virtual" width={150} height={150} />
+				<Image
+					src="/chat.gif"
+					alt="Assistente virtual"
+					width={150}
+					height={150}
+					className="h-16 w-16 sm:h-[150px] sm:w-[150px]"
+				/>
 			</div>
 		</button>
 	)
