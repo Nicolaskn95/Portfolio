@@ -14,6 +14,5 @@ export async function talkToAI(chatId: string, message: Message): Promise<string
 	})
 
 	const reponseMessage = await response.text()
-	console.log(reponseMessage)
 	return reponseMessage
 }
