@@ -22,11 +22,7 @@ export function Menu() {
 			<MenuItem href="/project" selected={path?.startsWith('/project')}>
 				Projects
 			</MenuItem>
-			<MenuItem
-				href="https://api.whatsapp.com/send/?phone:5515991663664&text&type=phone_number"
-				selected={false}
-				newTab={true}
-			>
+			<MenuItem href="/contact" selected={path === '/contact'}>
 				Contact
 			</MenuItem>
 		</nav>
