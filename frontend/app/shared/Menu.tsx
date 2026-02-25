@@ -19,7 +19,7 @@ export function Menu() {
 			<MenuItem href="/" selected={path === '/'}>
 				Home
 			</MenuItem>
-			<MenuItem href="/project/1" selected={path?.startsWith('/project')}>
+			<MenuItem href="/project" selected={path?.startsWith('/project')}>
 				Projects
 			</MenuItem>
 			<MenuItem
