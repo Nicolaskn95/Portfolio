@@ -7,5 +7,6 @@ import { ProjectPrisma } from './project.prisma'
 	providers: [ProjectPrisma],
 	controllers: [ProjectController],
 	imports: [DbModule],
+	exports: [ProjectPrisma],
 })
 export class ProjectModule {}
