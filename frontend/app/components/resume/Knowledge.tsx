@@ -1,7 +1,12 @@
-export default function Knowledge() {
+import { getProjects } from '@/app/functions/projects'
+
+export default async function Knowledge() {
+	const projects = await getProjects()
+	const projectCount = projects.all.length
+
 	return (
 		<div className="flex flex-row md:flex-col gap-6 p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
-			<Item main="3" label="Projetos criados" />
+			<Item main={projectCount.toString()} label="Projetos criados" />
 			<div
 				className="w-px md:w-full md:h-px self-stretch md:self-auto bg-border shrink-0"
 				aria-hidden

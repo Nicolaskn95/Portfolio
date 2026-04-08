@@ -44,7 +44,7 @@ export function ChatWindow() {
 					<span className="text-sm sm:text-base">Vamos conversar?</span>
 				</div>
 			) : (
-				<div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overscroll-contain px-2 py-2 sm:px-3 sm:py-3">
+				<div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2 sm:px-3 sm:py-3">
 					{messages.map((message, i) => {
 						const sameAuthor = i > 0 && messages[i - 1].author === message.author
 						return (

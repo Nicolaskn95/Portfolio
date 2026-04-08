@@ -27,7 +27,7 @@ export function useChat() {
 
 			setMessages((msgs) => [...msgs, newMessage])
 
-			const reponse = await talkToAI(chatId, newMessage)
+			const reponse = await talkToAI(chatId, [...messages, newMessage])
 			if (!reponse) return
 
 			const reponseAImessage: Message = {

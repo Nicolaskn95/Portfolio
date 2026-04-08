@@ -13,11 +13,11 @@ export function MessageBalloon(props: MessageBalloonProps) {
 }
 
 const bubbleBase =
-	'px-3 py-2 max-w-[90%] text-sm leading-[1.4] shadow-[0_1px_2px_rgba(0,0,0,0.08)] sm:max-w-[70%] sm:px-4 sm:py-2.5 sm:text-[15px] sm:leading-[1.35]'
+	'min-w-0 max-w-[90%] overflow-x-auto px-3 py-2 text-sm leading-[1.4] shadow-[0_1px_2px_rgba(0,0,0,0.08)] sm:max-w-[70%] sm:px-4 sm:py-2.5 sm:text-[15px] sm:leading-[1.35]'
 
 function LeftBalloon({ message, omitAuthor }: MessageBalloonProps) {
 	return (
-		<div className="flex flex-col gap-1.5 items-start sm:gap-2">
+		<div className="flex w-full min-w-0 max-w-full flex-col items-start gap-1.5 sm:gap-2">
 			{!omitAuthor && (
 				<Image
 					src="/bot.png"
@@ -36,7 +36,7 @@ function LeftBalloon({ message, omitAuthor }: MessageBalloonProps) {
 				<div
 					className={`${bubbleBase} rounded-[14px] rounded-bl-[4px] bg-[#E5E5EA] text-black sm:rounded-[18px]`}
 				>
-					<ContentMD markdown={message.text} />
+					<ContentMD markdown={message.text} tone="neutral" />
 				</div>
 			</div>
 		</div>
@@ -45,7 +45,9 @@ function LeftBalloon({ message, omitAuthor }: MessageBalloonProps) {
 
 function RightBalloon({ message, omitAuthor }: MessageBalloonProps) {
 	return (
-		<div className={`flex flex-col items-end gap-1.5 mr-0 sm:mr-2 sm:gap-2 ${omitAuthor ? 'pr-0 sm:pr-2' : ''}`}>
+		<div
+			className={`mr-0 flex w-full min-w-0 max-w-full flex-col items-end gap-1.5 sm:mr-2 sm:gap-2 ${omitAuthor ? 'pr-0 sm:pr-2' : ''}`}
+		>
 			{!omitAuthor && (
 				<span className="text-[10px] text-zinc-500 font-medium mr-2 mb-0.5 sm:mr-3 sm:text-[11px]">
 					{message.author}
@@ -54,7 +56,7 @@ function RightBalloon({ message, omitAuthor }: MessageBalloonProps) {
 			<div
 				className={`${bubbleBase} rounded-[14px] rounded-br-[4px] bg-[#34C759] text-white sm:rounded-[18px]`}
 			>
-				<ContentMD markdown={message.text} />
+				<ContentMD markdown={message.text} tone="inverse" />
 			</div>
 		</div>
 	)
