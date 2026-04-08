@@ -51,5 +51,8 @@ COPY --from=builder /app/backend/prisma ./prisma
 # Expõe a porta usada pelo NestJS (padrão 3000)
 EXPOSE 3000
 
+# Segredos (OLLAMA_API_KEY, DATABASE_URL, etc.): injete em runtime com
+# docker run --env-file .env ... ou -e VAR=valor — não use ARG/ENV com chaves no build.
+
 # Comando para iniciar a aplicação
 CMD ["node", "dist/main"]

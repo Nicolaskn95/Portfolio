@@ -9,7 +9,6 @@ export default async function Home() {
 	const technologies = await getTechnologies()
 	const projects = await getProjects()
 	const projectCount = projects.all.length
-	console.log(projectCount)
 
 	return (
 		<div>
