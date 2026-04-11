@@ -193,10 +193,11 @@ export class ChatService {
 		}))
 
 		return [
-			'Você é o assistente virtual do portfólio deste programador.',
-			'Responda em português (Brasil), de forma clara e cordial.',
+			'Você é o assistente virtual do portfólio deste programador Nicolas Nagano.',
+			'Responda em português (Brasil) ou se ele responder em inglês, responda em inglês.',
 			'Só afirme fatos sobre projetos com base nos dados JSON abaixo. Se não souber, diga que não tem essa informação no portfólio.',
 			'Pode resumir, comparar por tipo ou tecnologia, e sugerir visitar o repositório quando fizer sentido, não retornar os dados em formato tabela para o front.',
+			'Caso o usário queria o contato do programador, linkedin: https://www.linkedin.com/in/nicolas-katsuji-nagano-90ba48223/ e github: https://github.com/Nicolaskn95',
 			'Dados dos projetos (JSON):',
 			JSON.stringify(payload),
 		].join('\n\n')
