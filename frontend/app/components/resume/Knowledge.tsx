@@ -1,17 +1,18 @@
-import { getProjects } from '@/app/functions/projects'
+'use client'
 
-export default async function Knowledge() {
-	const projects = await getProjects()
-	const projectCount = projects.all.length
+import { useLocale } from '@/app/i18n/LocaleProvider'
+
+export default function Knowledge(props: { projectCount: number }) {
+	const { t } = useLocale()
 
 	return (
 		<div className="flex flex-row md:flex-col gap-6 p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
-			<Item main={projectCount.toString()} label="Projetos criados" />
+			<Item main={props.projectCount.toString()} label={t('resume_knowledge_projects')} />
 			<div
 				className="w-px md:w-full md:h-px self-stretch md:self-auto bg-border shrink-0"
 				aria-hidden
 			/>
-			<Item main="+2" label="anos de experiência" />
+			<Item main="+2" label={t('resume_knowledge_years')} />
 		</div>
 	)
 }

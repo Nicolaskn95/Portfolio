@@ -1,7 +1,9 @@
 'use client'
 
 import { Container } from './Container'
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import Link from 'next/link'
+import { LanguageToggle } from './LanguageToggle'
 import { Menu } from './Menu'
 
 const HEADER_STARS = [
@@ -18,6 +20,8 @@ const HEADER_STARS = [
 ] as const
 
 export function Header() {
+	const { t } = useLocale()
+
 	return (
 		<header className="sticky top-0 z-50 w-full overflow-hidden border-b border-white/10 bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
 			{/* Camada espacial: estrelas e brilho */}
@@ -48,21 +52,22 @@ export function Header() {
 				<Link
 					href="/"
 					className="shrink-0 text-sm font-semibold tracking-tight text-white transition-opacity hover:opacity-90 sm:text-base"
-					aria-label="Início"
+					aria-label={t('header_aria_home')}
 				>
 					NN
 				</Link>
 				<nav className="flex min-w-0 flex-1 items-center justify-center sm:justify-start sm:overflow-visible">
 					<Menu />
 				</nav>
-				<div className="flex shrink-0 items-center">
+				<div className="flex shrink-0 items-center gap-2 sm:gap-3">
+					<LanguageToggle />
 					<Link
 						href="https://www.linkedin.com/in/nicolas-katsuji-nagano-90ba48223/"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-flex h-8 items-center justify-center rounded-full border border-white/20 bg-white/5 px-3 text-xs font-medium text-white transition-all duration-200 hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 sm:h-9 sm:px-4 sm:text-sm"
 					>
-						<span className="relative z-10">Perfil</span>
+						<span className="relative z-10">{t('header_profile')}</span>
 					</Link>
 				</div>
 			</Container>

@@ -1,3 +1,6 @@
+'use client'
+
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import { Technology } from '@core/technology/Technology'
 
 interface TechnologiesWorkedProps {
@@ -5,12 +8,13 @@ interface TechnologiesWorkedProps {
 }
 
 export default function TechnologiesWorked(props: TechnologiesWorkedProps) {
+	const { t } = useLocale()
 	if (!props.list?.length) return null
 
 	return (
 		<div className="flex flex-col p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
 			<span className="text-sm font-semibold text-foreground mb-3 font-professional">
-				Tecnologias
+				{t('resume_technologies_heading')}
 			</span>
 			<div className="flex flex-wrap gap-2 justify-center md:justify-start">
 				{props.list.map((tech) => (

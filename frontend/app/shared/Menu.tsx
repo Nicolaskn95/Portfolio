@@ -1,5 +1,6 @@
 'use client'
 
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -13,17 +14,18 @@ interface MenuProps {
 
 export function Menu() {
 	const path = usePathname()
+	const { t } = useLocale()
 
 	return (
 		<nav className="flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-6 md:gap-8">
 			<MenuItem href="/" selected={path === '/'}>
-				Home
+				{t('menu_home')}
 			</MenuItem>
 			<MenuItem href="/project" selected={path?.startsWith('/project')}>
-				Projects
+				{t('menu_projects')}
 			</MenuItem>
 			<MenuItem href="/contact" selected={path === '/contact'}>
-				Contact
+				{t('menu_contact')}
 			</MenuItem>
 		</nav>
 	)

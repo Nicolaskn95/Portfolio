@@ -1,6 +1,11 @@
+'use client'
+
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import Image from 'next/image'
 
 export function Footer() {
+	const { t } = useLocale()
+
 	return (
 		<footer className="mt-auto bg-card/40 py-6">
 			<div className="mx-auto max-w-3xl px-6 text-center flex flex-col items-center gap-4">
@@ -16,8 +21,7 @@ export function Footer() {
 				</div>
 
 				<blockquote className="text-xs sm:text-sm md:text-base text-muted-foreground italic leading-relaxed max-w-md">
-					&quot;Consagre ao Senhor tudo o que você faz, e os seus planos serão
-					bem-sucedidos.&quot; — Provérbios 16:3
+					{t('footer_quote')}
 				</blockquote>
 			</div>
 		</footer>

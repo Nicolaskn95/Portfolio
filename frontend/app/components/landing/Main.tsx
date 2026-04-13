@@ -1,5 +1,6 @@
 'use client'
 
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import { Header } from '@/app/shared/Header'
 import { Technology } from '@core/technology/Technology'
 import Technologies from '../technologies/Technologies'
@@ -13,6 +14,8 @@ interface MainProps {
 }
 
 export function Main(props: MainProps) {
+	const { t } = useLocale()
+
 	return (
 		<section className="relative flex min-h-screen flex-col bg-neutral-950 text-zinc-100 overflow-hidden">
 			<ShootingStars />
@@ -37,7 +40,7 @@ export function Main(props: MainProps) {
 									Nicolas Nagano
 								</p>
 								<p className="text-sm sm:text-base font-medium tracking-[0.2em] uppercase text-zinc-400 mt-0.5">
-									Software Developer
+									{t('main_role')}
 								</p>
 							</div>
 						</div>
