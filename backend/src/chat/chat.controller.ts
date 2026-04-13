@@ -9,7 +9,8 @@ export class ChatController {
 	@Post()
 	async chat(@Body() body: ChatRequestBody) {
 		const messages = Array.isArray(body?.messages) ? body.messages : []
-		const reply = await this.chatService.respond(messages)
+		const locale = body?.locale === 'en' ? 'en' : 'pt'
+		const reply = await this.chatService.respond(messages, locale)
 		return { reply }
 	}
 }

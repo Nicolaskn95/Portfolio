@@ -1,4 +1,5 @@
 'use client'
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import { Button } from '@/components/ui/button'
 import { useChat } from '@/hooks/useChat'
 import { IconMessages, IconReload, IconSend } from '@tabler/icons-react'
@@ -7,6 +8,7 @@ import { MessageBalloon } from './MessageBalloon'
 import Image from 'next/image'
 
 export function ChatWindow() {
+	const { t } = useLocale()
 	const [text, setText] = useState<string>('')
 	const { messages, clearMessages, addMessage, thinking, canSendMore } = useChat()
 	const chatEndRef = useRef<HTMLDivElement>(null)
@@ -24,14 +26,14 @@ export function ChatWindow() {
 	return (
 		<div className="flex max-h-[85dvh] min-h-0 flex-col overflow-hidden rounded-xl bg-zinc-300 text-black sm:max-h-[75dvh] sm:rounded-2xl">
 			<div className="flex shrink-0 items-center justify-between gap-2 bg-white p-3 sm:p-4">
-				<h2 className="min-w-0 flex-1 truncate text-base font-bold sm:text-xl">Olá, visitante!</h2>
+				<h2 className="min-w-0 flex-1 truncate text-base font-bold sm:text-xl">{t('chat_title')}</h2>
 				<Button
 					type="button"
 					variant="ghost"
 					size="icon"
 					onClick={clearMessages}
 					className="ml-auto h-9 w-9 shrink-0 rounded-full text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 sm:h-10 sm:w-10 [&>svg]:shrink-0"
-					aria-label="Limpar conversa"
+					aria-label={t('chat_clear_aria')}
 				>
 					<IconReload size={20} className="sm:size-5" />
 				</Button>
@@ -41,7 +43,7 @@ export function ChatWindow() {
 					<div className="flex size-24 items-center justify-center sm:size-36 md:size-48">
 						<IconMessages size={256} stroke={0.2} className="size-full text-black/30" />
 					</div>
-					<span className="text-sm sm:text-base">Vamos conversar?</span>
+					<span className="text-sm sm:text-base">{t('chat_empty_cta')}</span>
 				</div>
 			) : (
 				<div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2 sm:px-3 sm:py-3">
@@ -59,7 +61,7 @@ export function ChatWindow() {
 						<div className="flex justify-start">
 							<Image
 								src="/pensando.gif"
-								alt="Pensando..."
+								alt={t('chat_thinking_alt')}
 								width={50}
 								height={50}
 								className="size-8 sm:size-12"
@@ -74,7 +76,7 @@ export function ChatWindow() {
 				<input
 					type="text"
 					value={text}
-					placeholder={!canSendMore ? 'Aguarde...' : 'Mensagem...'}
+					placeholder={!canSendMore ? t('chat_placeholder_wait') : t('chat_placeholder_message')}
 					className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500 pl-2 sm:pl-3 sm:text-base"
 					onChange={(e) => setText(e.target.value)}
 					onKeyDown={(e) => {

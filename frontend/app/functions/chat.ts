@@ -1,5 +1,6 @@
 'use server'
 
+import { messages, type Locale } from '../i18n/messages'
 import { Message } from '../model/Message'
 
 function backendBaseUrl(): string {
@@ -10,16 +11,21 @@ function backendBaseUrl(): string {
 	)
 }
 
-function mapConversation(messages: Message[]) {
-	return messages.map((m) => ({
+function mapConversation(messagesArg: Message[]) {
+	return messagesArg.map((m) => ({
 		role: m.side === 'right' ? ('user' as const) : ('assistant' as const),
 		content: m.text,
 	}))
 }
 
+function chatMessage(locale: Locale, key: string): string {
+	return messages[locale][key] ?? messages.pt[key] ?? key
+}
+
 export async function talkToAI(
 	chatId: string,
 	conversation: Message[],
+	locale: Locale = 'pt',
 ): Promise<string | null> {
 	const url = `${backendBaseUrl()}/chat`
 	let response: Response
@@ -30,10 +36,11 @@ export async function talkToAI(
 			body: JSON.stringify({
 				chatId,
 				messages: mapConversation(conversation),
+				locale,
 			}),
 		})
 	} catch {
-		return 'Não foi possível contactar o servidor. Tente novamente em instantes.'
+		return chatMessage(locale, 'chat_error_network')
 	}
 
 	const raw = await response.text()
@@ -43,13 +50,13 @@ export async function talkToAI(
 	} catch {
 		return response.ok
 			? null
-			: 'Resposta inválida do servidor. Tente novamente.'
+			: chatMessage(locale, 'chat_error_parse')
 	}
 
 	if (!response.ok) {
 		const msg = data.message
 		const text = Array.isArray(msg) ? msg.join(' ') : msg
-		return text || 'O assistente está indisponível no momento.'
+		return text || chatMessage(locale, 'chat_error_unavailable')
 	}
 
 	return data.reply ?? null

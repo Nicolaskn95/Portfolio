@@ -5,7 +5,7 @@ import {
 	UnauthorizedException,
 } from '@nestjs/common'
 import { ProjectPrisma } from '../project/project.prisma'
-import { ChatMessagePayload } from './chat.types'
+import { ChatMessagePayload, type ChatUiLocale } from './chat.types'
 
 const MAX_MESSAGES = 24
 const MAX_CONTENT_LENGTH = 4000
@@ -83,7 +83,7 @@ export class ChatService {
 		return this.isCloudHost() ? OLLAMA_CLOUD_DEFAULT_MODEL : OLLAMA_LOCAL_DEFAULT_MODEL
 	}
 
-	async respond(messages: ChatMessagePayload[]): Promise<string> {
+	async respond(messages: ChatMessagePayload[], locale: ChatUiLocale = 'pt'): Promise<string> {
 		const apiKey = process.env.OLLAMA_API_KEY?.trim()
 		if (this.isCloudHost() && !apiKey) {
 			throw new ServiceUnavailableException(
@@ -97,7 +97,7 @@ export class ChatService {
 		}
 
 		const projects = await this.projectPrisma.getAllWithTechnologies()
-		const systemContent = this.buildSystemPrompt(projects)
+		const systemContent = this.buildSystemPrompt(projects, locale)
 
 		const url = `${this.ollamaBaseUrl()}/api/chat`
 		const headers: Record<string, string> = {
@@ -177,6 +177,7 @@ export class ChatService {
 
 	private buildSystemPrompt(
 		projects: Awaited<ReturnType<ProjectPrisma['getAllWithTechnologies']>>,
+		locale: ChatUiLocale,
 	): string {
 		const payload = projects.map((p) => ({
 			id: p.id,
@@ -192,14 +193,28 @@ export class ChatService {
 			})),
 		}))
 
+		const jsonBlock = JSON.stringify(payload)
+
+		if (locale === 'en') {
+			return [
+				"You are the virtual assistant for software developer Nicolas Nagano's portfolio.",
+				'The visitor is using the site in English: always reply in clear, professional English.',
+				'Only state facts about projects using the JSON data below. If you do not know, say that this information is not available in the portfolio.',
+				'You may summarize, compare by type or technology, and suggest visiting the repository when appropriate. Do not format the answer as a data table for the UI.',
+				'Contact: LinkedIn https://www.linkedin.com/in/nicolas-katsuji-nagano-90ba48223/ — GitHub https://github.com/Nicolaskn95',
+				'Project data (JSON):',
+				jsonBlock,
+			].join('\n\n')
+		}
+
 		return [
 			'Você é o assistente virtual do portfólio deste programador Nicolas Nagano.',
-			'Responda em português (Brasil) ou se ele responder em inglês, responda em inglês.',
+			'O visitante está com o site em português: responda sempre em português (Brasil), de forma clara e profissional.',
 			'Só afirme fatos sobre projetos com base nos dados JSON abaixo. Se não souber, diga que não tem essa informação no portfólio.',
-			'Pode resumir, comparar por tipo ou tecnologia, e sugerir visitar o repositório quando fizer sentido, não retornar os dados em formato tabela para o front.',
-			'Caso o usário queria o contato do programador, linkedin: https://www.linkedin.com/in/nicolas-katsuji-nagano-90ba48223/ e github: https://github.com/Nicolaskn95',
+			'Pode resumir, comparar por tipo ou tecnologia, e sugerir visitar o repositório quando fizer sentido; não retorne os dados em formato de tabela para o front.',
+			'Contato do programador — LinkedIn: https://www.linkedin.com/in/nicolas-katsuji-nagano-90ba48223/ — GitHub: https://github.com/Nicolaskn95',
 			'Dados dos projetos (JSON):',
-			JSON.stringify(payload),
+			jsonBlock,
 		].join('\n\n')
 	}
 }

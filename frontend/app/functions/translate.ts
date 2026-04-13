@@ -2,10 +2,13 @@ import { httpPost } from './api'
 
 type TranslateResponse = { translatedText: string }
 
+export type TranslateSource = 'pt' | 'en' | 'auto'
+export type TranslateTarget = 'pt' | 'en'
+
 export async function translatePlain(
 	text: string,
-	source: 'pt' | 'en',
-	target: 'pt' | 'en',
+	source: TranslateSource,
+	target: TranslateTarget,
 ): Promise<string | null> {
 	const res = await httpPost<TranslateResponse>('translate', { text, source, target })
 	if (!res || typeof res.translatedText !== 'string') return null

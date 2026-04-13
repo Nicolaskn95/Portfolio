@@ -3,7 +3,7 @@
 import ContentMD from '@/app/shared/ContentMD'
 import { useLocale } from '@/app/i18n/LocaleProvider'
 import { translatePlain } from '@/app/functions/translate'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export interface ReadmeProps {
 	markdown: string
@@ -13,10 +13,7 @@ export default function Readme({ markdown }: ReadmeProps) {
 	const { locale, t } = useLocale()
 	const [displayMd, setDisplayMd] = useState(markdown)
 	const [busy, setBusy] = useState(false)
-
-	useEffect(() => {
-		setDisplayMd(markdown)
-	}, [markdown])
+	const translateRequestId = useRef(0)
 
 	useEffect(() => {
 		if (locale !== 'en') {
@@ -25,19 +22,16 @@ export default function Readme({ markdown }: ReadmeProps) {
 			return
 		}
 
-		let cancelled = false
+		const id = ++translateRequestId.current
 		setBusy(true)
+		setDisplayMd(markdown)
 
 		;(async () => {
-			const out = await translatePlain(markdown, 'pt', 'en')
-			if (cancelled) return
+			const out = await translatePlain(markdown, 'auto', 'en')
+			if (translateRequestId.current !== id) return
 			setDisplayMd(out ?? markdown)
 			setBusy(false)
 		})()
-
-		return () => {
-			cancelled = true
-		}
 	}, [locale, markdown])
 
 	return (

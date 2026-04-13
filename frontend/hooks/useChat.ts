@@ -4,8 +4,10 @@ import { Id } from '@core'
 import { useLocalStorage } from './useLocalStorage'
 import { Message } from '@/app/model/Message'
 import { talkToAI } from '@/app/functions/chat'
+import { useLocale } from '@/app/i18n/LocaleProvider'
 
 export function useChat() {
+	const { locale, t } = useLocale()
 	const [chatId] = useLocalStorage<string>('chatId', Id.generate())
 	const [messages, setMessages] = useLocalStorage<Message[]>('messages', [])
 	const [thinking, setThinking] = useState<boolean>(false)
@@ -21,19 +23,19 @@ export function useChat() {
 			const newMessage: Message = {
 				id: Id.generate(),
 				text,
-				author: 'Visitante',
+				author: t('chat_label_visitor'),
 				side: 'right',
 			}
 
 			setMessages((msgs) => [...msgs, newMessage])
 
-			const reponse = await talkToAI(chatId, [...messages, newMessage])
+			const reponse = await talkToAI(chatId, [...messages, newMessage], locale)
 			if (!reponse) return
 
 			const reponseAImessage: Message = {
 				id: Id.generate(),
 				text: reponse,
-				author: 'Assistente Virtual',
+				author: t('chat_label_assistant'),
 				side: 'left',
 			}
 

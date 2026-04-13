@@ -5,7 +5,11 @@ export interface ChatMessagePayload {
 	content: string
 }
 
+export type ChatUiLocale = 'pt' | 'en'
+
 export interface ChatRequestBody {
 	chatId?: string
 	messages: ChatMessagePayload[]
+	/** Idioma ativo no front; o modelo deve responder nesse idioma. */
+	locale?: ChatUiLocale
 }

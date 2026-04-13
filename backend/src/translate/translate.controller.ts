@@ -1,12 +1,20 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
-import { TranslateService } from './translate.service'
-
-type LangCode = 'pt' | 'en'
+import { TranslateService, type SourceLang, type TargetLang } from './translate.service'
 
 type TranslateBody = {
 	text: string
-	source?: LangCode
-	target?: LangCode
+	source?: SourceLang
+	target?: TargetLang
+}
+
+function parseSource(body: TranslateBody): SourceLang {
+	const s = body.source
+	if (s === 'en' || s === 'auto') return s
+	return 'pt'
+}
+
+function parseTarget(body: TranslateBody): TargetLang {
+	return body.target === 'pt' ? 'pt' : 'en'
 }
 
 @Controller('translate')
@@ -19,9 +27,11 @@ export class TranslateController {
 		if (typeof text !== 'string') {
 			throw new BadRequestException('Campo "text" é obrigatório e deve ser string.')
 		}
-		const source: LangCode = body.source === 'en' ? 'en' : 'pt'
-		const target: LangCode = body.target === 'pt' ? 'pt' : 'en'
-		if (source === target) {
+
+		const source = parseSource(body)
+		const target = parseTarget(body)
+
+		if (source !== 'auto' && source === target) {
 			return { translatedText: text }
 		}
 
