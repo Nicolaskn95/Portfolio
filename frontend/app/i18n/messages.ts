@@ -39,6 +39,10 @@ export const messages: Record<
 		contact_github_desc: 'Confira meus repositórios',
 		readme_translating: 'Traduzindo o README',
 		readme_translating_hint: 'Aguarde — o texto abaixo será atualizado em inglês.',
+		readme_translate_failed:
+			'Não foi possível traduzir o README agora (serviço indisponível ou URL da API incorreta).',
+		readme_translate_failed_hint:
+			'Confira NEXT_PUBLIC_API_URL no front e se o backend consegue acessar o Lingva (LINGVA_BASE_URLS).',
 		chat_title: 'Olá, visitante!',
 		chat_clear_aria: 'Limpar conversa',
 		chat_empty_cta: 'Vamos conversar?',
@@ -89,6 +93,10 @@ export const messages: Record<
 		contact_github_desc: 'Browse my repositories',
 		readme_translating: 'Translating the README',
 		readme_translating_hint: 'Please wait — the text below will switch to English when ready.',
+		readme_translate_failed:
+			'Could not translate the README right now (service unavailable or wrong API URL).',
+		readme_translate_failed_hint:
+			'Check NEXT_PUBLIC_API_URL on the frontend and whether the backend can reach Lingva (LINGVA_BASE_URLS).',
 		chat_title: 'Hello, visitor!',
 		chat_clear_aria: 'Clear conversation',
 		chat_empty_cta: 'Shall we chat?',

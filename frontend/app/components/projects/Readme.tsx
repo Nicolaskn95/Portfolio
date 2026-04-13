@@ -15,23 +15,32 @@ export default function Readme({ markdown }: ReadmeProps) {
 	const { locale, t } = useLocale()
 	const [displayMd, setDisplayMd] = useState(markdown)
 	const [busy, setBusy] = useState(false)
+	const [translateFailed, setTranslateFailed] = useState(false)
 	const translateRequestId = useRef(0)
 
 	useEffect(() => {
 		if (locale !== 'en') {
 			setDisplayMd(markdown)
 			setBusy(false)
+			setTranslateFailed(false)
 			return
 		}
 
 		const id = ++translateRequestId.current
 		setBusy(true)
+		setTranslateFailed(false)
 		setDisplayMd(markdown)
 
 		;(async () => {
 			const out = await translatePlain(markdown, 'auto', 'en')
 			if (translateRequestId.current !== id) return
-			setDisplayMd(out ?? markdown)
+			if (out === null) {
+				setTranslateFailed(true)
+				setDisplayMd(markdown)
+			} else {
+				setTranslateFailed(false)
+				setDisplayMd(out)
+			}
 			setBusy(false)
 		})()
 	}, [locale, markdown])
@@ -70,6 +79,15 @@ export default function Readme({ markdown }: ReadmeProps) {
 							<div className="readme-translate-bar h-full w-1/3 rounded-full bg-cyan-400/90" />
 						</div>
 					</div>
+				</div>
+			) : null}
+			{!busy && translateFailed ? (
+				<div
+					className="mb-4 rounded-xl border border-amber-500/40 bg-amber-950/40 px-4 py-3 text-sm text-amber-100/95 shadow-[0_0_20px_rgba(245,158,11,0.12)]"
+					role="alert"
+				>
+					<p className="font-medium">{t('readme_translate_failed')}</p>
+					<p className="mt-1 text-xs text-amber-200/80">{t('readme_translate_failed_hint')}</p>
 				</div>
 			) : null}
 			<div className="relative min-w-0">

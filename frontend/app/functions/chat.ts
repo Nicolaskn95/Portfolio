@@ -3,12 +3,23 @@
 import { messages, type Locale } from '../i18n/messages'
 import { Message } from '../model/Message'
 
+function serverOrigin(): string {
+	const site = process.env.NEXT_PUBLIC_SITE_URL?.trim()
+	if (site) return site.replace(/\/$/, '')
+	const vercel = process.env.VERCEL_URL?.trim()
+	if (vercel) return `https://${vercel.replace(/\/$/, '')}`
+	return 'http://localhost:3000'
+}
+
+/** Server Action chama o Nest por URL absoluta; se NEXT_PUBLIC_API_URL for /portfolio-api, compõe com o host. */
 function backendBaseUrl(): string {
-	return (
-		process.env.API_URL?.replace(/\/$/, '') ??
-		process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ??
-		'http://localhost:4000'
-	)
+	const fromApi = process.env.API_URL?.trim()
+	if (fromApi) return fromApi.replace(/\/$/, '')
+	const pub = process.env.NEXT_PUBLIC_API_URL?.trim()
+	if (pub?.startsWith('http')) return pub.replace(/\/$/, '')
+	if (pub?.startsWith('/')) return `${serverOrigin()}${pub}`
+	if (pub) return pub.replace(/\/$/, '')
+	return 'http://localhost:4000'
 }
 
 function mapConversation(messagesArg: Message[]) {
