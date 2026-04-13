@@ -1,6 +1,11 @@
+'use client'
+
+import { useLocale } from '@/app/i18n/LocaleProvider'
 import Image from 'next/image'
 
 export default function MiniCV() {
+	const { t } = useLocale()
+
 	return (
 		<div className="flex flex-col sm:flex-row gap-5 p-4 sm:p-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg shadow-black/10 transition-shadow hover:shadow-xl hover:shadow-black/15">
 			<div className="relative mx-auto w-full max-w-[200px] shrink-0 overflow-hidden rounded-xl bg-muted aspect-3/4 sm:mx-0 sm:h-48 sm:max-w-none sm:w-36 sm:aspect-auto md:h-52 md:w-40">
@@ -18,13 +23,10 @@ export default function MiniCV() {
 						Nicolas Katsuji Nagano
 					</span>
 					<span className="text-sm text-muted-foreground font-medium">
-						Software Developer
+						{t('resume_mini_cv_role')}
 					</span>
 				</div>
-				<p className="text-sm text-muted-foreground leading-relaxed">
-					Cristão, marido e pai. Como desenvolvedor, busco a excelência em meu trabalho
-					como forma de honrar e servir ao Senhor Jesus Cristo.
-				</p>
+				<p className="text-sm text-muted-foreground leading-relaxed">{t('resume_mini_cv_bio')}</p>
 			</div>
 		</div>
 	)
